@@ -12,7 +12,7 @@ A Flask-based video processing system using YOLOv3 for vehicle detection and lan
 ## Installation
 1. Clone repository:
 ```bash
-git clone https://github.com/yourusername/lane-vehicle-detection.git
+git clone https://github.com/Ankmmarao/LaneDectionForSelfDringCars.git
 cd lane-vehicle-detection
 
 
