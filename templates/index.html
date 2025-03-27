@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Processing System</title>
+</head>
+<body>
+    <h1>Upload Video</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if filename %}
+    <div id="processing">
+        <h2>Processing Progress</h2>
+        <progress id="progressBar" value="0" max="100"></progress>
+        <div id="status"></div>
+    </div>
+    <div id="videoFeed">
+        <h2>Live Processing</h2>
+        <img src="{{ url_for('video_feed', filename=filename) }}">
+    </div>
+    {% endif %}
+
+    <script>
+        // JavaScript for progress updates
+        {% if filename %}
+        const progressBar = document.getElementById('progressBar');
+        const statusDiv = document.getElementById('status');
+        
+        function updateProgress() {
+            fetch('/progress/{{ filename }}')
+                .then(response => response.json())
+                .then(data => {
+                    progressBar.value = data.progress;
+                    statusDiv.innerHTML = `Processing: ${data.progress.toFixed(1)}%`;
+                    
+                    if (data.progress < 100) {
+                        setTimeout(updateProgress, 1000);
+                    } else {
+                        statusDiv.innerHTML = "Processing complete!";
+                    }
+                });
+        }
+        updateProgress();
+        {% endif %}
+    </script>
+</body>
+</html>
