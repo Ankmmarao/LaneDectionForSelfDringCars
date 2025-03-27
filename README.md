@@ -19,3 +19,9 @@ cd lane-vehicle-detection
 wget https://pjreddie.com/media/files/yolov3.weights -P yolov3/
 wget https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg?raw=true -O yolov3/yolov3.cfg
 wget https://github.com/pjreddie/darknet/blob/master/data/coco.names?raw=true -O yolov3/coco.names
+
+
+
+## Run Application
+
+python app.py
